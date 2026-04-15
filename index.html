@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kumkum Arts — Art Retreats in the Himalayas</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -111,52 +108,70 @@
         <p class="eyebrow">Upcoming Events</p>
         <h2 id="upcoming-heading">Don't Miss These Retreats</h2>
       </div>
-      <div class="event-grid">
+      <div class="upcoming-events-carousel">
+        <div class="upcoming-events-viewport">
+          <div class="event-grid upcoming-events-track">
 
-        <article class="event-card" id="pottery-bir-apr" data-type="pottery" data-location="bir" data-duration="3">
-          <img src="Images/19777.jpg" alt="Hand-building pottery session in Bir">
-          <div class="event-card-body">
-            <span class="event-tag">Pottery</span>
-            <span class="limited-tag" aria-label="Limited seats available">Only 3 seats left</span>
-            <h3>Hand-Building Pottery in Bir</h3>
-            <p class="event-meta">
-              <span>📍 Bir, HP</span>
-              <span>Apr 24–26, 2025</span>
-              <span>&#8377;7,000</span>
-            </p>
-            <a class="button button-primary" href="pages/event-detail.html?id=pottery-bir-apr">View Details</a>
+            <article class="event-card" id="pottery-bir-apr" data-type="pottery" data-location="bir" data-duration="3">
+              <img src="Images/19777.jpg" alt="Hand-building pottery session in Bir">
+              <div class="event-card-body">
+                <span class="event-tag">Pottery</span>
+                <span class="limited-tag" aria-label="Limited seats available">Only 3 seats left</span>
+                <h3>Hand-Building Pottery in Bir</h3>
+                <p class="event-meta">
+                  <span>📍 Bir, HP</span>
+                  <span>Apr 24–26, 2025</span>
+                  <span>&#8377;7,000</span>
+                </p>
+                <a class="button button-primary" href="pages/event-detail.html?id=pottery-bir-apr">View Details</a>
+              </div>
+            </article>
+
+            <article class="event-card" id="painting-manali-may" data-type="painting" data-location="manali" data-duration="2">
+              <img src="Images/565.jpg" alt="Watercolour painting workshop in Manali">
+              <div class="event-card-body">
+                <span class="event-tag">Painting</span>
+                <h3>Watercolour in the Mountains</h3>
+                <p class="event-meta">
+                  <span>📍 Manali, HP</span>
+                  <span>May 10–11, 2025</span>
+                  <span>&#8377;5,500</span>
+                </p>
+                <a class="button button-primary" href="pages/event-detail.html?id=painting-manali-may">View Details</a>
+              </div>
+            </article>
+
+            <article class="event-card" id="escape-kasol-jun" data-type="escape" data-location="kasol" data-duration="3">
+              <img src="Images/Bir-Billing.avif" alt="Weekend art escape in Kasol">
+              <div class="event-card-body">
+                <span class="event-tag">Weekend Escape</span>
+                <span class="limited-tag" aria-label="Limited seats available">Only 4 seats left</span>
+                <h3>Weekend Art Escape — Kasol</h3>
+                <p class="event-meta">
+                  <span>📍 Kasol, HP</span>
+                  <span>Jun 6–8, 2025</span>
+                  <span>&#8377;8,500</span>
+                </p>
+                <a class="button button-primary" href="pages/event-detail.html?id=escape-kasol-jun">View Details</a>
+              </div>
+            </article>
+
+            <article class="event-card" id="pottery-dharamshala-jul" data-type="pottery" data-location="dharamshala" data-duration="2">
+              <img src="Images/2150844155.jpg" alt="Pottery and creative retreat session in Dharamshala">
+              <div class="event-card-body">
+                <span class="event-tag">Pottery + Painting</span>
+                <h3>Sunset Studio Retreat — Dharamshala</h3>
+                <p class="event-meta">
+                  <span>📍 Dharamshala, HP</span>
+                  <span>Jul 19–20, 2025</span>
+                  <span>&#8377;6,500</span>
+                </p>
+                <a class="button button-primary" href="pages/event-detail.html?id=pottery-dharamshala-jul">View Details</a>
+              </div>
+            </article>
+
           </div>
-        </article>
-
-        <article class="event-card" id="painting-manali-may" data-type="painting" data-location="manali" data-duration="2">
-          <img src="Images/565.jpg" alt="Watercolour painting workshop in Manali">
-          <div class="event-card-body">
-            <span class="event-tag">Painting</span>
-            <h3>Watercolour in the Mountains</h3>
-            <p class="event-meta">
-              <span>📍 Manali, HP</span>
-              <span>May 10–11, 2025</span>
-              <span>&#8377;5,500</span>
-            </p>
-            <a class="button button-primary" href="pages/event-detail.html?id=painting-manali-may">View Details</a>
-          </div>
-        </article>
-
-        <article class="event-card" id="escape-kasol-jun" data-type="escape" data-location="kasol" data-duration="3">
-          <img src="Images/Bir-Billing.avif" alt="Weekend art escape in Kasol">
-          <div class="event-card-body">
-            <span class="event-tag">Weekend Escape</span>
-            <span class="limited-tag" aria-label="Limited seats available">Only 4 seats left</span>
-            <h3>Weekend Art Escape — Kasol</h3>
-            <p class="event-meta">
-              <span>📍 Kasol, HP</span>
-              <span>Jun 6–8, 2025</span>
-              <span>&#8377;8,500</span>
-            </p>
-            <a class="button button-primary" href="pages/event-detail.html?id=escape-kasol-jun">View Details</a>
-          </div>
-        </article>
-
+        </div>
       </div>
     </section>
 
@@ -209,40 +224,70 @@
     <section class="section gallery-section" aria-labelledby="gallery-heading">
       <div class="section-heading centered">
         <p class="eyebrow">Gallery</p>
-        <h2 id="gallery-heading">A Deeper Glimpse Into Bir's Creative Mood</h2>
-        <p class="gallery-intro">
-          Beyond workshops, Bir gives you open skies, pine trails, Tibetan cafes, and sunset viewpoints that make every art session feel more alive.
-          We curate each retreat day so your creative practice is connected to local culture, mountain calm, and meaningful slow travel moments.
-        </p>
+        <h2 id="gallery-heading">Retreat Moments</h2>
       </div>
-      <div class="gallery-grid reveal-on-scroll">
-        <img class="reveal-up" src="Images/1063.jpg" alt="Pottery session at a Kumkum Arts retreat" data-lightbox="gallery" data-caption="Shaping clay on Day 1 — Bir Retreat">
-        <img class="reveal-up" src="Images/112.jpg" alt="Art supplies laid out for a workshop" data-lightbox="gallery" data-caption="All materials provided — just bring yourself">
-        <img class="reveal-up" src="Images/2148153673.jpg" alt="Mountain landscape at the retreat location" data-lightbox="gallery" data-caption="The view that greets you every morning">
-        <img class="reveal-up" src="Images/565.jpg" alt="Painting session in nature" data-lightbox="gallery" data-caption="Painting picnic amidst the mountains">
-        <img class="reveal-up" src="Images/5825.jpg" alt="Painted pottery pieces drying in the sun" data-lightbox="gallery" data-caption="Finished pottery pieces — Day 3">
-        <img class="reveal-up" src="Images/89147.jpg" alt="Retreat participants sharing a meal together" data-lightbox="gallery" data-caption="Shared meals, real connections">
-      </div>
-      <div class="bir-highlights">
-        <article class="bir-highlight-card reveal-on-scroll reveal-up">
-          <h3>Paragliding Valley Views</h3>
-          <p>Early mornings in Bir often begin with clouds lifting over the valley and paragliders painting the sky above the ridges.</p>
-        </article>
-        <article class="bir-highlight-card reveal-on-scroll reveal-up">
-          <h3>Monastery Trails & Cafes</h3>
-          <p>Between sessions, explore monastery roads, tea spots, and quiet walking trails that naturally slow your pace and reset your mind.</p>
-        </article>
-        <article class="bir-highlight-card reveal-on-scroll reveal-up">
-          <h3>Sunset + Studio Rhythm</h3>
-          <p>Our evenings blend warm conversations, gentle reflection, and studio time so you return with finished art and lasting memories.</p>
-        </article>
-      </div>
-      <div class="gallery-story reveal-on-scroll reveal-up">
-        <h3>Why this feels different</h3>
-        <p>
-          This is not a rushed tour. It is a carefully paced creative itinerary where mountain air, local atmosphere, and hands-on practice come together.
-          Every retreat includes guided making, reflective breaks, community meals, and enough free time to wander Bir at your own rhythm.
-        </p>
+      <div class="home-gallery-carousel" aria-label="Retreat gallery highlights">
+        <div class="home-gallery-viewport">
+          <div class="home-gallery-track" data-home-gallery-track>
+            <article class="home-gallery-card">
+              <img src="Images/2148153673.jpg" alt="Mountain valley view near Bir">
+              <div class="home-gallery-overlay">
+                <strong>Mountain Mornings</strong>
+                <p>Fresh air, open views, and slow starts.</p>
+              </div>
+            </article>
+            <article class="home-gallery-card">
+              <img src="Images/19777.jpg" alt="Hands shaping clay in pottery session">
+              <div class="home-gallery-overlay">
+                <strong>Pottery Practice</strong>
+                <p>Hands-on sessions with guided support.</p>
+              </div>
+            </article>
+            <article class="home-gallery-card">
+              <img src="Images/565.jpg" alt="Painting workshop in nature">
+              <div class="home-gallery-overlay">
+                <strong>Painting Outdoors</strong>
+                <p>Color, quiet, and mountain light.</p>
+              </div>
+            </article>
+            <article class="home-gallery-card">
+              <img src="Images/89147.jpg" alt="Participants spending time together at retreat">
+              <div class="home-gallery-overlay">
+                <strong>Community Evenings</strong>
+                <p>Shared meals and meaningful conversations.</p>
+              </div>
+            </article>
+            <article class="home-gallery-card">
+              <img src="Images/5825.jpg" alt="Finished painted pottery pieces">
+              <div class="home-gallery-overlay">
+                <strong>Final Creations</strong>
+                <p>Take home work you are proud of.</p>
+              </div>
+            </article>
+            <article class="home-gallery-card">
+              <img src="Images/112.jpg" alt="Art supplies prepared for retreat participants">
+              <div class="home-gallery-overlay">
+                <strong>Studio Setup</strong>
+                <p>Everything prepared, just show up and create.</p>
+              </div>
+            </article>
+            <article class="home-gallery-card">
+              <img src="Images/23562.jpg" alt="Retreat participants settling into creative session">
+              <div class="home-gallery-overlay">
+                <strong>Welcome Sessions</strong>
+                <p>Ease into the flow with confidence.</p>
+              </div>
+            </article>
+            <article class="home-gallery-card">
+              <img src="Images/Bir-Billing.avif" alt="Landscape around Bir retreat location">
+              <div class="home-gallery-overlay">
+                <strong>Bir Landscape</strong>
+                <p>Nature all around your creative journey.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="home-gallery-dots" aria-label="Gallery carousel controls"></div>
       </div>
       <div style="text-align:center; margin-top:28px;">
         <a class="button button-secondary" href="pages/gallery.html">View Full Gallery</a>
@@ -257,38 +302,94 @@
         <p class="eyebrow">Testimonials</p>
         <h2 id="testimonials-heading">What Past Participants Say</h2>
       </div>
-      <div class="testimonials-grid">
+      <div class="testimonials-carousel" aria-live="polite">
+        <div class="testimonial-page is-active" aria-hidden="false">
+          <article class="testimonial-card">
+            <blockquote>
+              <p>"Three days that completely changed how I see creativity. The pottery session was meditative, the mountains were breathtaking, and the people I met felt like old friends by Day 2."</p>
+            </blockquote>
+            <footer>
+              <strong class="testimonial-name">Priya S.</strong>
+              <span class="testimonial-event">Pottery Retreat, Bir — April 2024</span>
+            </footer>
+          </article>
 
-        <article class="testimonial-card">
-          <blockquote>
-            <p>"Three days that completely changed how I see creativity. The pottery session was meditative, the mountains were breathtaking, and the people I met felt like old friends by Day 2."</p>
-          </blockquote>
-          <footer>
-            <strong class="testimonial-name">Priya S.</strong>
-            <span class="testimonial-event">Pottery Retreat, Bir — April 2024</span>
-          </footer>
-        </article>
+          <article class="testimonial-card">
+            <blockquote>
+              <p>"I came alone, nervous about not knowing anyone. By the end, I had painted my first landscape, made a clay bowl, and found my people. Highly recommend for solo travelers."</p>
+            </blockquote>
+            <footer>
+              <strong class="testimonial-name">Arjun M.</strong>
+              <span class="testimonial-event">Weekend Art Escape, Kasol — October 2024</span>
+            </footer>
+          </article>
 
-        <article class="testimonial-card">
-          <blockquote>
-            <p>"I came alone, nervous about not knowing anyone. By the end, I had painted my first landscape, made a clay bowl, and found my people. Highly recommend for solo travelers."</p>
-          </blockquote>
-          <footer>
-            <strong class="testimonial-name">Arjun M.</strong>
-            <span class="testimonial-event">Weekend Art Escape, Kasol — October 2024</span>
-          </footer>
-        </article>
+          <article class="testimonial-card">
+            <blockquote>
+              <p>"My partner and I did this as a couple's getaway. It was the most unique and meaningful trip we've taken together. The host made everything feel so personal and warm."</p>
+            </blockquote>
+            <footer>
+              <strong class="testimonial-name">Sneha &amp; Rahul</strong>
+              <span class="testimonial-event">Painting Workshop, Manali — September 2024</span>
+            </footer>
+          </article>
 
-        <article class="testimonial-card">
-          <blockquote>
-            <p>"My partner and I did this as a couple's getaway. It was the most unique and meaningful trip we've taken together. The host made everything feel so personal and warm."</p>
-          </blockquote>
-          <footer>
-            <strong class="testimonial-name">Sneha &amp; Rahul</strong>
-            <span class="testimonial-event">Painting Workshop, Manali — September 2024</span>
-          </footer>
-        </article>
+          <article class="testimonial-card">
+            <blockquote>
+              <p>"I had never touched clay before this retreat. The instructors made it so simple and supportive that I completed two pieces and felt genuinely proud."</p>
+            </blockquote>
+            <footer>
+              <strong class="testimonial-name">Nikita G.</strong>
+              <span class="testimonial-event">Pottery Retreat, Bir — January 2025</span>
+            </footer>
+          </article>
+        </div>
 
+        <div class="testimonial-page" aria-hidden="true">
+          <article class="testimonial-card">
+            <blockquote>
+              <p>"The schedule was perfect — focused sessions, good food, and enough time to pause. It felt like therapy with colors and mountains."</p>
+            </blockquote>
+            <footer>
+              <strong class="testimonial-name">Rohit V.</strong>
+              <span class="testimonial-event">Painting Workshop, Bir — February 2025</span>
+            </footer>
+          </article>
+
+          <article class="testimonial-card">
+            <blockquote>
+              <p>"Best part was the people. Everyone came from different cities, but by the last evening it felt like a close creative community."</p>
+            </blockquote>
+            <footer>
+              <strong class="testimonial-name">Ayesha K.</strong>
+              <span class="testimonial-event">Weekend Art Escape, Bir — March 2025</span>
+            </footer>
+          </article>
+
+          <article class="testimonial-card">
+            <blockquote>
+              <p>"I joined with my sister and both of us loved how welcoming the instructors were. It felt premium but still warm and personal."</p>
+            </blockquote>
+            <footer>
+              <strong class="testimonial-name">Megha T.</strong>
+              <span class="testimonial-event">Pottery Retreat, Bir — May 2025</span>
+            </footer>
+          </article>
+
+          <article class="testimonial-card">
+            <blockquote>
+              <p>"As a working professional, I needed a reset. The retreat gave me exactly that — calm mornings, focused art, and genuine rest."</p>
+            </blockquote>
+            <footer>
+              <strong class="testimonial-name">Karan D.</strong>
+              <span class="testimonial-event">Weekend Art Escape, Bir — June 2025</span>
+            </footer>
+          </article>
+        </div>
+      </div>
+      <div class="testimonial-dots" aria-label="Testimonial controls">
+        <button class="is-active" type="button" data-testimonial-dot="0" aria-label="Show testimonial 1"></button>
+        <button type="button" data-testimonial-dot="1" aria-label="Show testimonial group 2"></button>
       </div>
     </section>
 
@@ -296,18 +397,46 @@
          TASK 10a — BEFORE YOU JOIN (Requirement 13)
          ============================================================ -->
     <section class="section before-you-join" aria-labelledby="before-heading">
-      <div class="section-heading">
+      <div class="section-heading centered">
         <p class="eyebrow">Before You Join</p>
         <h2 id="before-heading">What to Expect</h2>
       </div>
-      <div class="soft-panel">
-        <ul class="prep-list">
-          <li>Bring comfortable, paint-friendly clothes you don't mind getting dirty</li>
-          <li>No prior art experience needed — all skill levels welcome</li>
-          <li>Expect slow mornings, shared meals, and genuine conversations</li>
-          <li>All art materials are provided — just bring yourself and an open mind</li>
-          <li>Group size is intentionally small (8–12 people) for a personal experience</li>
-        </ul>
+      <div class="expect-cards">
+        <article class="expect-card reveal-up">
+          <img src="Images/23562.jpg" alt="Participants arriving and settling into retreat">
+          <div class="expect-overlay">
+            <strong>Arrival & Welcome Circle</strong>
+            <p>Settle in, meet your group, and ease into the retreat pace.</p>
+          </div>
+        </article>
+        <article class="expect-card reveal-up">
+          <img src="Images/19777.jpg" alt="Hands shaping clay in pottery session">
+          <div class="expect-overlay">
+            <strong>Guided Art Sessions</strong>
+            <p>Hands-on pottery and painting with step-by-step artist support.</p>
+          </div>
+        </article>
+        <article class="expect-card reveal-up">
+          <img src="Images/2148153673.jpg" alt="Mountain landscape around Bir retreat">
+          <div class="expect-overlay">
+            <strong>Mountain Pause Moments</strong>
+            <p>Tea breaks, nature walks, and quiet time between studio blocks.</p>
+          </div>
+        </article>
+        <article class="expect-card reveal-up">
+          <img src="Images/89147.jpg" alt="Retreat participants sharing conversations and meals">
+          <div class="expect-overlay">
+            <strong>Shared Evenings</strong>
+            <p>Warm meals, meaningful conversations, and reflection at day end.</p>
+          </div>
+        </article>
+        <article class="expect-card reveal-up">
+          <img src="Images/5825.jpg" alt="Finished painted pottery pieces ready to take home">
+          <div class="expect-overlay">
+            <strong>Take Home Your Work</strong>
+            <p>Leave with completed pieces and confidence in your creative process.</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -315,10 +444,21 @@
          TASK 10b — GIFT AN EXPERIENCE (Requirement 15)
          ============================================================ -->
     <section class="section gift-section" aria-labelledby="gift-heading">
-      <div class="section-heading centered">
-        <p class="eyebrow">Gift an Experience</p>
-        <h2 id="gift-heading">Give the Gift of Creativity</h2>
-        <p>Know someone who needs a creative escape? Gift them a retreat experience — the most thoughtful present you can give.</p>
+      <video class="gift-video" autoplay muted loop playsinline preload="metadata" poster="Images/Bir-Billing.avif" aria-hidden="true">
+        <source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-a-mountain-valley-1579/1080p.mp4" type="video/mp4">
+      </video>
+      <div class="gift-overlay" aria-hidden="true"></div>
+      <div class="gift-content">
+        <div class="section-heading centered">
+          <p class="eyebrow">Gift an Experience</p>
+          <h2 id="gift-heading">Give the Gift of Creativity</h2>
+          <p>Know someone who needs a meaningful break? Gift them a mountain retreat with guided art, calm spaces, and memories they will talk about for years.</p>
+        </div>
+        <div class="gift-mini-points">
+          <span>Personalized gift message</span>
+          <span>Flexible retreat date options</span>
+          <span>Beginner-friendly by design</span>
+        </div>
       </div>
       <div class="hero-actions" style="justify-content:center; margin-top:28px;">
         <a class="button button-primary" href="https://wa.me/919999999999?text=Hi%2C%20I%27d%20like%20to%20gift%20a%20retreat%20experience" target="_blank" rel="noopener noreferrer">Gift via WhatsApp</a>
