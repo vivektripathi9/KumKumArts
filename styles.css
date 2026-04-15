@@ -137,6 +137,10 @@ p {
   text-decoration: none;
 }
 
+.site-header .brand {
+  padding: 0;
+}
+
 .brand span {
   width: 44px;
   height: 44px;
@@ -1209,8 +1213,23 @@ p {
 }
 
 @media (max-width: 767px) {
+  .site-header {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .site-header .brand {
+    justify-self: start;
+  }
+
+  .brand-logo {
+    height: 46px;
+  }
+
   .nav-toggle {
     display: flex;
+    justify-self: end;
   }
 
   .site-nav {
@@ -1229,7 +1248,7 @@ p {
     left: 0;
     width: 100%;
     background: var(--white);
-    padding: 16px 24px;
+    padding: 14px 16px 18px;
     border-bottom: 1px solid var(--line);
     box-shadow: 0 8px 24px rgba(73, 52, 44, 0.12);
     z-index: 19;
