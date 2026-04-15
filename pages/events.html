@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retreat Events - Kumkum Arts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Kumkum Arts home"><img src="../Images/logo.png" alt="Kumkum Arts logo" class="brand-logo">Kumkum Arts</a>
+    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-button" href="contact.html">Book Your Spot</a>
+  </header>
+
+  <main class="subpage">
+    <section class="subpage-heading">
+      <p class="eyebrow">Retreat experience</p>
+      <h1>Three days, three creative openings.</h1>
+      <p>Each session is designed to be gentle, beginner-friendly, and deeply connected to the mountain setting.</p>
+    </section>
+
+    <section class="event-grid">
+      <article class="event-card">
+        <img src="../Images/19777.jpg" alt="Clay and pottery workshop materials">
+        <div>
+          <span>Day 1</span>
+          <h3>Hand-building pottery session</h3>
+          <p>Get your hands dirty and learn to shape clay from scratch.</p>
+        </div>
+      </article>
+      <article class="event-card">
+        <img src="../Images/565.jpg" alt="Outdoor painting setup in nature">
+        <div>
+          <span>Day 2</span>
+          <h3>Painting picnic in nature</h3>
+          <p>Paint live amidst the mountains.</p>
+        </div>
+      </article>
+      <article class="event-card">
+        <img src="../Images/5825.jpg" alt="Painted pottery and art supplies">
+        <div>
+          <span>Day 3</span>
+          <h3>Paint your pottery pieces</h3>
+          <p>Bring your creations to life with colors.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html" aria-label="Kumkum Arts home">
+          <img src="../Images/logo.png" alt="Kumkum Arts logo" class="brand-logo">
+          Kumkum Arts
+        </a>
+        <p>A creative escape into the mountains — pottery, painting, and presence in the heart of Himachal Pradesh.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener">📷</a>
+          <a href="https://wa.me/919999999999" aria-label="WhatsApp" target="_blank" rel="noopener">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Experiences</h4>
+        <ul>
+          <li><a href="events.html?type=pottery">Pottery Retreat 🏺</a></li>
+          <li><a href="events.html?type=painting">Painting Workshop 🎨</a></li>
+          <li><a href="events.html?type=escape">Weekend Art Escape 🌄</a></li>
+          <li><a href="contact.html">Gift an Experience 🎁</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li class="footer-contact-item"><span>📍</span> Bir, Himachal Pradesh</li>
+          <li class="footer-contact-item"><span>💬</span> <a href="https://wa.me/919999999999" target="_blank" rel="noopener">WhatsApp Us</a></li>
+          <li class="footer-contact-item"><span>📷</span> <a href="https://instagram.com" target="_blank" rel="noopener">@kumkumarts</a></li>
+          <li class="footer-contact-item"><span>✉️</span> <a href="mailto:hello@kumkumarts.in">hello@kumkumarts.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Kumkum Arts. All rights reserved.</p>
+      <p>Made with 🧡 in the mountains</p>
+    </div>
+  </footer>
+  </footer>
+  <script>
+  document.querySelectorAll('.site-nav a').forEach(function(a) {
+    if (location.pathname.endsWith(a.getAttribute('href').replace('../', '').replace('./', '')) ||
+        (a.getAttribute('href') === 'index.html' && (location.pathname === '/' || location.pathname.endsWith('index.html'))) ||
+        (a.getAttribute('href') === '../index.html' && (location.pathname === '/' || location.pathname.endsWith('index.html')))) {
+      a.classList.add('is-active');
+      a.setAttribute('aria-current', 'page');
+    }
+  });
+  </script>
+</body>
+</html>
