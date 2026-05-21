@@ -145,19 +145,9 @@ startSlider();
   startAutoplay();
 })();
 
-// ── Home Gallery Auto Carousel ────────────────────────────────────────────────
+// ── Home Gallery Auto Carousel (all instances: home, current event, etc.) ─────
 (function () {
-  const track = document.querySelector("[data-home-gallery-track]");
-  const dotsWrap = document.querySelector(".home-gallery-dots");
-  if (!track || !dotsWrap) return;
-
-  const cards = Array.from(track.querySelectorAll(".home-gallery-card"));
-  if (!cards.length) return;
-
-  let index = 0;
-  let maxIndex = 0;
-  let timerId;
-  let dots = [];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   function getPerView() {
     if (window.matchMedia("(max-width: 620px)").matches) return 1;
@@ -165,58 +155,123 @@ startSlider();
     return 4;
   }
 
-  function buildDots(count) {
-    dotsWrap.innerHTML = "";
-    dots = Array.from({ length: count }, (_, i) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.setAttribute("aria-label", `Show gallery slide ${i + 1}`);
-      if (i === 0) btn.classList.add("is-active");
-      btn.addEventListener("click", () => {
-        index = i;
-        render();
-        startAutoplay();
+  /** @returns {{ recalc: () => void, startAutoplay: () => void } | null} */
+  function initHomeGalleryCarousel(carousel) {
+    const track = carousel.querySelector("[data-home-gallery-track]");
+    const dotsWrap = carousel.querySelector(".home-gallery-dots");
+    if (!track || !dotsWrap) return null;
+
+    const cards = Array.from(track.querySelectorAll(".home-gallery-card"));
+    if (!cards.length) return null;
+
+    let index = 0;
+    let maxIndex = 0;
+    let timerId = 0;
+    let dots = [];
+
+    function buildDots(count) {
+      dotsWrap.innerHTML = "";
+      dots = Array.from({ length: count }, (_, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.setAttribute("aria-label", `Show gallery slide ${i + 1}`);
+        if (i === 0) btn.classList.add("is-active");
+        btn.addEventListener("click", () => {
+          index = i;
+          render();
+          startAutoplay();
+        });
+        dotsWrap.appendChild(btn);
+        return btn;
       });
-      dotsWrap.appendChild(btn);
-      return btn;
-    });
-  }
+    }
 
-  function render() {
-    const firstCard = cards[0];
-    const gap = Number.parseFloat(window.getComputedStyle(track).gap || "10");
-    const step = firstCard.offsetWidth + gap;
-    track.style.transform = `translateX(-${index * step}px)`;
+    function render() {
+      const firstCard = cards[0];
+      const gap = Number.parseFloat(window.getComputedStyle(track).gap || "10");
+      const w = firstCard.offsetWidth;
+      if (!w) return;
+      const step = w + gap;
+      track.style.transform = `translateX(-${index * step}px)`;
 
-    dots.forEach((dot, dotIndex) => {
-      dot.classList.toggle("is-active", dotIndex === index);
-    });
-  }
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === index);
+      });
+    }
 
-  function recalc() {
-    const perView = getPerView();
-    maxIndex = Math.max(0, cards.length - perView);
-    if (index > maxIndex) index = 0;
-    buildDots(maxIndex + 1);
-    render();
-  }
-
-  function startAutoplay() {
-    window.clearInterval(timerId);
-    timerId = window.setInterval(() => {
-      index = index >= maxIndex ? 0 : index + 1;
+    function recalc() {
+      const perView = getPerView();
+      maxIndex = Math.max(0, cards.length - perView);
+      if (index > maxIndex) index = 0;
+      buildDots(maxIndex + 1);
       render();
-    }, 3000);
-  }
+    }
 
-  const carousel = document.querySelector(".home-gallery-carousel");
-  if (carousel) {
+    function startAutoplay() {
+      window.clearInterval(timerId);
+      if (reduceMotion.matches) return;
+      timerId = window.setInterval(() => {
+        index = index >= maxIndex ? 0 : index + 1;
+        render();
+      }, 3500);
+    }
+
+    function onResize() {
+      recalc();
+    }
+
     carousel.addEventListener("mouseenter", () => window.clearInterval(timerId));
     carousel.addEventListener("mouseleave", startAutoplay);
+    window.addEventListener("resize", onResize);
+
+    recalc();
+    startAutoplay();
+
+    return { recalc, startAutoplay };
   }
 
-  window.addEventListener("resize", recalc);
-  recalc();
-  startAutoplay();
+  const instances = Array.from(document.querySelectorAll(".home-gallery-carousel"))
+    .map(initHomeGalleryCarousel)
+    .filter(Boolean);
+
+  if (!instances.length) return;
+
+  reduceMotion.addEventListener("change", () => {
+    instances.forEach((inst) => {
+      inst.recalc();
+      inst.startAutoplay();
+    });
+  });
 })();
 
+(function initInstagramScroller() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  document.querySelectorAll("[data-ig-scroller]").forEach((viewport) => {
+    const wrap = viewport.closest(".ig-scroller-wrap");
+    const prev = wrap?.querySelector(".ig-scroll-prev");
+    const next = wrap?.querySelector(".ig-scroll-next");
+    if (!prev || !next) return;
+
+    function scrollByDirection(dir) {
+      const amount = Math.max(200, Math.floor(viewport.clientWidth * 0.85));
+      viewport.scrollBy({
+        left: dir * amount,
+        behavior: reduceMotion.matches ? "auto" : "smooth",
+      });
+    }
+
+    prev.addEventListener("click", () => scrollByDirection(-1));
+    next.addEventListener("click", () => scrollByDirection(1));
+
+    viewport.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        scrollByDirection(-1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        scrollByDirection(1);
+      }
+    });
+  });
+})();
