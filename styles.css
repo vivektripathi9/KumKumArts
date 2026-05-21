@@ -1174,6 +1174,7 @@ p {
 }
 
 .home-gallery-viewport {
+  min-width: 0;
   overflow: hidden;
   border-radius: 16px;
 }
@@ -1256,11 +1257,12 @@ p {
 
 .ig-scroller-wrap {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: stretch;
   gap: 12px;
   max-width: 1100px;
   margin: 28px auto 0;
+  min-width: 0;
 }
 
 .ig-scroll-btn {
@@ -1293,6 +1295,8 @@ p {
 }
 
 .ig-scroller-viewport {
+  min-width: 0;
+  max-width: 100%;
   overflow-x: auto;
   overflow-y: auto;
   scroll-snap-type: x mandatory;
@@ -1382,7 +1386,9 @@ p {
   }
 
   .ig-embed-slot {
-    --ig-slot-w: min(302px, calc(100vw - 56px));
+    /* Use dvw when supported so slot width matches layout viewport (100vw + scrollbar often causes sideways nudge). */
+    --ig-slot-w: min(302px, calc(100vw - 48px));
+    --ig-slot-w: min(302px, calc(100dvw - 48px));
   }
 }
 
@@ -1570,15 +1576,20 @@ p {
   font-size: 0.88rem;
   color: rgba(255, 253, 249, 0.65);
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
-  gap: 8px;
+  gap: 6px 10px;
 }
 
-.footer-col .footer-contact-item span {
+.footer-col .footer-contact-item > span:first-child {
   font-size: 0.8rem;
   font-weight: 700;
   color: rgba(255, 253, 249, 0.75);
   flex-shrink: 0;
+}
+
+.footer-contact-nowrap {
+  white-space: nowrap;
 }
 
 .footer-bottom {
@@ -1635,8 +1646,14 @@ p {
 .subpage {
   width: min(1160px, calc(100% - 32px));
   display: grid;
+  /* Let the column shrink below wide children (carousels, embed strips); default minmax(auto,1fr) blows out page width. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 56px;
   margin: 72px auto 0;
+}
+
+.subpage > * {
+  min-width: 0;
 }
 
 .subpage-hero {
@@ -2403,8 +2420,56 @@ p {
 }
 
 /* ============================================================
+   FLOATING WHATSAPP (site-wide)
+   ============================================================ */
+
+.whatsapp-float {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: max(18px, env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow:
+    0 4px 20px rgba(37, 211, 102, 0.45),
+    0 2px 10px rgba(45, 35, 32, 0.18);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.06);
+  color: #fff;
+}
+
+.whatsapp-float:focus-visible {
+  outline: 3px solid var(--terracotta, #c95e47);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================
    NEWSLETTER FORM
    ============================================================ */
+
+.newsletter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+}
 
 .newsletter-form {
   display: flex;
@@ -2444,9 +2509,11 @@ p {
    CONTACT FORM & FIELD GROUPS
    ============================================================ */
 
-.contact-form {
-  display: grid;
-  gap: 20px;
+.contact-form-note {
+  margin: 0 0 8px;
+  font-size: 0.88rem;
+  color: var(--brown);
+  opacity: 0.88;
 }
 
 .field-group {
@@ -2458,6 +2525,12 @@ p {
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--brown);
+}
+
+.field-group label .required-mark {
+  color: var(--terracotta);
+  font-weight: 700;
+  margin-left: 3px;
 }
 
 .field-group input,
@@ -2748,7 +2821,8 @@ p {
   }
 
   .newsletter-form input[type="email"],
-  .newsletter-form .button {
+  .newsletter-form .button,
+  .newsletter-actions .button {
     width: 100%;
   }
 }
@@ -3174,7 +3248,8 @@ p {
   text-align: center;
 }
 
-.newsletter-section .newsletter-form {
+.newsletter-section .newsletter-form,
+.newsletter-section .newsletter-actions {
   justify-content: center;
 }
 
@@ -4004,7 +4079,8 @@ p {
 
   .button,
   .nav-button,
-  .newsletter-form .button {
+  .newsletter-form .button,
+  .newsletter-actions .button {
     min-height: 44px;
     padding: 11px 16px;
   }
@@ -4136,6 +4212,16 @@ p {
 
 .current-event-page {
   padding-bottom: 48px;
+}
+
+/* Avoid rare horizontal scroll from full-bleed sections, stats, or embeds. */
+body.page-current-event {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+html:has(body.page-current-event) {
+  overflow-x: hidden;
 }
 
 .ce-page-hero .ce-hero-sub {
@@ -4674,6 +4760,11 @@ p {
   overflow: visible;
 }
 
+/* Taller stack (stats + two CTAs) than typical subpage heroes; shared .page-hero max-height clips the second button on phones. */
+.page-current-event .page-hero {
+  max-height: none;
+}
+
 .page-current-event .ce-hero-eyebrow {
   animation: ceHeroLine 0.75s ease backwards;
 }
@@ -4995,6 +5086,122 @@ p {
 
   .ce-submit-pulse {
     animation: none;
+  }
+
+  .page-current-event main.subpage.current-event-page {
+    width: min(1160px, calc(100% - 20px));
+    margin-top: 56px;
+    gap: 40px;
+  }
+
+  .ce-travel-banner {
+    min-height: 300px;
+  }
+
+  .ce-travel-overlay {
+    min-height: 0;
+    gap: 14px;
+    padding: 20px 14px 22px;
+  }
+
+  .ce-travel-dates-big {
+    letter-spacing: 0.02em;
+    text-transform: none;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+  }
+
+  .ce-travel-overlay h2 {
+    font-size: clamp(1.35rem, 5.5vw, 2rem);
+  }
+
+  .ce-travel-fact-time {
+    font-size: 1.2rem;
+  }
+
+  .ce-price-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+
+  .ce-price-desc {
+    flex: none;
+    width: 100%;
+  }
+
+  .ce-pricing-tagline-text {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-radius: 14px;
+    text-align: center;
+    padding: 10px 14px;
+  }
+
+  .ce-day-card {
+    padding: 16px 14px;
+  }
+
+  .ce-inclusion-panel,
+  .ce-exclusion-panel {
+    padding: 20px 16px;
+  }
+
+  .ce-travel-card {
+    padding: 14px 12px;
+  }
+
+  .ce-travel-card ul {
+    font-size: 0.86rem;
+    padding-left: 0.95rem;
+  }
+
+  .page-current-event .info-panel.ce-signup-panel {
+    padding: 22px 16px;
+  }
+
+  .ce-signup-ribbon {
+    font-size: 0.82rem;
+    padding-inline: 12px;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-current-event .ce-hero-stats {
+    flex-direction: column;
+  }
+
+  .page-current-event .ce-hero-stat {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .page-current-event .hero-actions.ce-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-current-event .hero-actions.ce-hero-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .page-current-event .page-hero h1.ce-hero-title {
+    font-size: clamp(1.35rem, 6.5vw, 1.85rem);
+    line-height: 1.1;
+  }
+
+  .page-current-event .ce-hero-dates-glow {
+    font-size: clamp(1rem, 5vw, 1.45rem);
+  }
+
+  .page-current-event .ce-checkbox-text {
+    overflow-wrap: anywhere;
   }
 }
 
