@@ -3,8 +3,8 @@
  *
  * Configuration: root `emailjs-config.js` sets `window.EMAILJS_CONFIG`.
  * Template variables must match your EmailJS template:
- *   {{from_name}}, {{from_email}}, {{phone}}, {{interest}}, {{message}}
- * Optional: {{reply_to}} — same as from_email for Reply-To.
+ *   {{name}}, {{email}}, {{phone}}, {{interest}}, {{message}}
+ * (Set template “Reply To” to {{email}} in the dashboard if you want one-click reply.)
  *
  * @see docs/EMAILJS-SETUP.md
  */
@@ -28,7 +28,7 @@
     return false;
   }
 
-  if (typeof emailjs === "undefined" || typeof emailjs.init !== "function") {
+  if (typeof emailjs === "undefined" || typeof emailjs.send !== "function") {
     if (feedback) {
       feedback.hidden = false;
       feedback.className = "form-feedback error";
@@ -84,38 +84,46 @@
     var interestEl = form.querySelector("#interest");
     var messageEl = form.querySelector("#message");
 
-    var fromName = nameEl ? nameEl.value.trim() : "";
-    var fromEmail = emailEl ? emailEl.value.trim() : "";
-
-    var params = {
-      from_name: fromName,
-      from_email: fromEmail,
-      reply_to: fromEmail,
-      phone: phoneEl ? phoneEl.value.trim() : "",
-      interest: interestEl ? interestEl.value.trim() : "",
-      message: messageEl ? messageEl.value.trim() : "",
-    };
+    var name = nameEl ? nameEl.value.trim() : "";
+    var email = emailEl ? emailEl.value.trim() : "";
+    var phone = phoneEl ? phoneEl.value.trim() : "";
+    var interest = interestEl ? interestEl.value.trim() : "";
+    var message = messageEl ? messageEl.value.trim() : "";
 
     emailjs
-      .send(cfg.serviceId, cfg.templateId, params)
-      .then(function () {
-        if (feedback) {
-          feedback.hidden = false;
-          feedback.className = "form-feedback success";
-          feedback.textContent =
-            "Thank you! We have received your enquiry. Our team will respond within 24 hours.";
+      .send(
+        cfg.serviceId,
+        cfg.templateId,
+        {
+          name: name,
+          email: email,
+          phone: phone,
+          interest: interest,
+          message: message,
+        },
+        cfg.publicKey
+      )
+      .then(
+        function (response) {
+          console.log("SUCCESS!", response.status, response.text);
+          if (feedback) {
+            feedback.hidden = false;
+            feedback.className = "form-feedback success";
+            feedback.textContent =
+              "Thank you! We have received your enquiry. Our team will respond within 24 hours.";
+          }
+          form.reset();
+        },
+        function (error) {
+          console.log("FAILED...", error);
+          if (feedback) {
+            feedback.hidden = false;
+            feedback.className = "form-feedback error";
+            feedback.textContent =
+              "We could not send your message right now. Please try again in a moment or WhatsApp us at +91 90415 48576.";
+          }
         }
-        form.reset();
-      })
-      .catch(function (err) {
-        if (feedback) {
-          feedback.hidden = false;
-          feedback.className = "form-feedback error";
-          feedback.textContent =
-            "We could not send your message right now. Please try again in a moment or WhatsApp us at +91 90415 48576.";
-        }
-        console.error("EmailJS:", err);
-      })
+      )
       .finally(function () {
         if (submitBtn) {
           submitBtn.disabled = false;

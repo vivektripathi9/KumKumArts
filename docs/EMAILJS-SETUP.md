@@ -20,17 +20,16 @@ Sign up at [https://www.emailjs.com/](https://www.emailjs.com/).
 
 | Variable       | Meaning                          |
 |----------------|----------------------------------|
-| `{{from_name}}` | Visitor’s full name            |
-| `{{from_email}}` | Visitor’s email               |
-| `{{reply_to}}` | Same as email (for Reply-To)   |
+| `{{name}}`     | Visitor’s full name             |
+| `{{email}}`    | Visitor’s email                 |
 | `{{phone}}`    | Phone / WhatsApp                 |
-| `{{interest}}` | What they’re interested in     |
+| `{{interest}}` | What they’re interested in      |
 | `{{message}}`  | Their message                    |
 
 **Example subject**
 
 ```text
-New enquiry from {{from_name}}
+New enquiry from {{name}}
 ```
 
 **Example content**
@@ -38,8 +37,8 @@ New enquiry from {{from_name}}
 ```text
 You have a new message from the Kumkum Arts website.
 
-Name: {{from_name}}
-Email: {{from_email}}
+Name: {{name}}
+Email: {{email}}
 Phone: {{phone}}
 Interested in: {{interest}}
 
@@ -47,7 +46,7 @@ Message:
 {{message}}
 ```
 
-4. In the template settings, set **Reply To** to `{{reply_to}}` if your provider supports it, so you can hit “Reply” and answer the visitor directly.
+4. In the template settings, set **Reply To** to `{{email}}` if your provider supports it, so you can hit “Reply” and answer the visitor directly.
 5. Note the **Template ID** (e.g. `template_xxxxxxx`).
 
 ## 4. Get your public key
