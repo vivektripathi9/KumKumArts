@@ -244,6 +244,204 @@ startSlider();
   });
 })();
 
+/** Kumkum Arts retreat photos — files under /Event/ at site root */
+/** Banner-only Event shots (hero / travel strip — keep out of this list): IMG_0251, 0276, 0369, 0246, 0136, 0201, 0229, 0431 (home hero), IMG_0265 (CE hero), IMG_0505 (CE travel) — all .JPG.jpeg. */
+const KUMKUM_EVENT_PHOTO_POOL = [
+  "Event/IMG_2895.JPG",
+  "Event/IMG_2886.JPG",
+  "Event/IMG_2879.JPG",
+  "Event/IMG_2670.JPG",
+  "Event/IMG_2686.JPG",
+  "Event/IMG_2700.JPG",
+  "Event/IMG_2889.JPG",
+  "Event/IMG_2897.JPG",
+  "Event/IMG_2867.JPG",
+  "Event/IMG_2868.JPG",
+  "Event/IMG_2880.JPG",
+  "Event/IMG_2682.JPG",
+  "Event/IMG_2701.JPG",
+  "Event/IMG_3608.JPG",
+  "Event/IMG_3595.JPG",
+  "Event/IMG_3600.JPG",
+  "Event/IMG_3601.JPG",
+  "Event/IMG_3891.JPG",
+];
+
+// ── Home Manali section — rotating retreat photos ─────────────────────────────
+(function initManaliVisualRotate() {
+  const root = document.querySelector("[data-manali-visual-rotate]");
+  if (!root) return;
+
+  const imgs = Array.from(root.querySelectorAll("img[data-manali-rot-index]")).sort(
+    (a, b) => Number(a.dataset.manaliRotIndex) - Number(b.dataset.manaliRotIndex)
+  );
+  if (imgs.length !== 3) return;
+
+  const pool = KUMKUM_EVENT_PHOTO_POOL;
+  if (pool.length < 3) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let offset = 0;
+  let timerId = 0;
+  const INTERVAL_MS = 4200;
+  const FADE_MS = 380;
+
+  function applySources() {
+    imgs[0].src = pool[offset % pool.length];
+    imgs[1].src = pool[(offset + 1) % pool.length];
+    imgs[2].src = pool[(offset + 2) % pool.length];
+  }
+
+  function tick() {
+    offset = (offset + 1) % pool.length;
+    imgs.forEach((img) => {
+      img.style.opacity = "0";
+    });
+    window.setTimeout(() => {
+      applySources();
+      requestAnimationFrame(() => {
+        imgs.forEach((img) => {
+          img.style.opacity = "1";
+        });
+      });
+    }, FADE_MS);
+  }
+
+  function start() {
+    window.clearInterval(timerId);
+    if (reduceMotion.matches) {
+      imgs.forEach((img) => {
+        img.style.opacity = "";
+      });
+      return;
+    }
+    timerId = window.setInterval(tick, INTERVAL_MS);
+  }
+
+  applySources();
+  imgs[0].setAttribute(
+    "alt",
+    "Rotating photos from Kumkum Arts retreats in Manali and the mountains"
+  );
+  imgs[1].setAttribute("alt", "");
+  imgs[2].setAttribute("alt", "");
+  imgs[1].setAttribute("aria-hidden", "true");
+  imgs[2].setAttribute("aria-hidden", "true");
+
+  root.addEventListener("mouseenter", () => window.clearInterval(timerId));
+  root.addEventListener("mouseleave", start);
+
+  reduceMotion.addEventListener("change", () => {
+    applySources();
+    start();
+  });
+
+  start();
+})();
+
+// ── Home “Why join” — one block: image and copy advance together ────────────
+(function initHomeWhyJoinShowcase() {
+  const root = document.querySelector("[data-home-why-showcase]");
+  if (!root) return;
+
+  const img = root.querySelector("img[data-home-why-rot-img]");
+  const slides = Array.from(root.querySelectorAll("[data-home-why-slide]"));
+  const dotsWrap = root.querySelector(".home-why-dots");
+  if (!img || slides.length === 0) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const INTERVAL_MS = 5600;
+  const FADE_MS = 280;
+  let index = 0;
+  let timerId = 0;
+  /** @type {HTMLButtonElement[]} */
+  const dots = [];
+
+  function slideSrc(i) {
+    const raw = slides[i].dataset.homeWhyImage;
+    return raw && raw.trim() ? raw.trim() : img.getAttribute("src") || "";
+  }
+
+  function show(nextIndex) {
+    const n = slides.length;
+    index = ((nextIndex % n) + n) % n;
+    slides.forEach((s, j) => {
+      s.classList.toggle("is-active", j === index);
+    });
+    const src = slideSrc(index);
+    if (src) img.src = src;
+    const title = slides[index].querySelector("h3");
+    if (title) {
+      img.alt = title.textContent.trim();
+    }
+    dots.forEach((d, j) => {
+      d.classList.toggle("is-active", j === index);
+    });
+  }
+
+  function tick() {
+    if (reduceMotion.matches) {
+      show(index + 1);
+      return;
+    }
+    img.style.opacity = "0";
+    window.setTimeout(() => {
+      show(index + 1);
+      window.requestAnimationFrame(() => {
+        img.style.opacity = "1";
+      });
+    }, FADE_MS);
+  }
+
+  function start() {
+    window.clearInterval(timerId);
+    timerId = window.setInterval(tick, INTERVAL_MS);
+  }
+
+  if (dotsWrap) {
+    dotsWrap.innerHTML = "";
+    slides.forEach((slide, j) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      const label = slide.querySelector("h3");
+      const labelText = label ? label.textContent.trim() : `Point ${j + 1}`;
+      btn.setAttribute("aria-label", `Show: ${labelText}`);
+      btn.classList.toggle("is-active", j === 0);
+      btn.addEventListener("click", () => {
+        window.clearInterval(timerId);
+        if (reduceMotion.matches) {
+          show(j);
+          start();
+          return;
+        }
+        img.style.opacity = "0";
+        window.setTimeout(() => {
+          show(j);
+          window.requestAnimationFrame(() => {
+            img.style.opacity = "1";
+          });
+          start();
+        }, FADE_MS);
+      });
+      dotsWrap.appendChild(btn);
+      dots.push(btn);
+    });
+  }
+
+  show(0);
+
+  root.addEventListener("mouseenter", () => window.clearInterval(timerId));
+  root.addEventListener("mouseleave", start);
+
+  reduceMotion.addEventListener("change", () => {
+    img.style.opacity = "";
+    show(index);
+    start();
+  });
+
+  start();
+})();
+
 (function initInstagramScroller() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
