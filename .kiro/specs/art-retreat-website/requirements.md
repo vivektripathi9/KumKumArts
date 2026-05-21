@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A multi-page art retreat and experience website for a solo creator/host offering pottery retreats, painting workshops, and weekend art escapes in nature locations (e.g., Himachal Pradesh). The site targets beginners, couples, and solo travelers seeking creative, immersive experiences. The overall vibe is Airbnb + Art Studio + Travel Experience. The existing workspace has index.html, styles.css, script.js, a pages/ folder (about.html, contact.html, events.html, gallery.html, stay.html), and an Images/ folder with photos.
+A multi-page art retreat and experience website for a solo creator/host offering pottery retreats, painting workshops, and weekend art escapes in nature locations (e.g., Himachal Pradesh). The site targets beginners, couples, and solo travelers seeking creative, immersive experiences. The overall vibe is Airbnb + Art Studio + Travel Experience. The existing workspace has index.html, styles.css, script.js, a pages/ folder (about.html, contact.html, gallery.html, stay.html, current-event.html), and an Images/ folder with photos.
 
 ## Glossary
 
