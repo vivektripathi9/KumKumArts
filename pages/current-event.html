@@ -18,7 +18,7 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a class="nav-button" href="#event-signup">Sign Up</a>
+    <a class="nav-button" href="contact.html#contact-enquiry-form">Sign Up</a>
   </header>
 
   <section class="page-hero ce-page-hero" style="background-image: url('../Event/IMG_0265.JPG.jpeg');" aria-label="Current retreat hero">
@@ -34,7 +34,7 @@
         <div class="ce-hero-stat"><span class="ce-hero-stat-value">₹9.5k+</span><span class="ce-hero-stat-label">from · shared stay</span></div>
       </div>
       <div class="hero-actions ce-hero-actions">
-        <a class="button button-primary ce-hero-cta" href="#event-signup">Grab my spot</a>
+        <a class="button button-primary ce-hero-cta" href="contact.html#contact-enquiry-form">Grab my spot</a>
         <a class="button button-secondary" href="#travel-details">How I get there</a>
       </div>
     </div>
@@ -220,7 +220,7 @@
         <div class="ce-signup-intro">
           <p class="eyebrow">This is the button your future self will thank you for</p>
           <h2 id="ce-signup-heading">Sign up — Manali May 29–31</h2>
-          <p class="ce-signup-lead">Drop your details. We ping you with confirmation, payment steps, and that “I’m actually doing this” feeling.</p>
+          <p class="ce-signup-lead">Save your spot through our contact enquiry form — we reply with confirmation, payment steps, and that “I’m actually doing this” feeling.</p>
           <ul class="ce-icon-list">
             <li><span class="ce-icon" aria-hidden="true">◇</span> Manali · <strong>29–31 May</strong> · Volvo dates locked above</li>
             <li><span class="ce-icon" aria-hidden="true">◇</span> Never held a brush? <strong>Perfect.</strong> We love first-timers.</li>
@@ -228,41 +228,8 @@
           </ul>
         </div>
         <article class="info-panel ce-signup-panel ce-signup-panel-glow">
-          <form class="contact-form ce-signup-form" id="ce-signup-form" novalidate aria-label="Event signup form">
-            <div class="field-group">
-              <label for="ce-name">Full name</label>
-              <input type="text" id="ce-name" name="name" placeholder="Your full name" required autocomplete="name">
-            </div>
-            <div class="field-group">
-              <label for="ce-email">Email</label>
-              <input type="email" id="ce-email" name="email" placeholder="you@example.com" required autocomplete="email">
-            </div>
-            <div class="field-group">
-              <label for="ce-phone">Phone / WhatsApp</label>
-              <input type="tel" id="ce-phone" name="phone" placeholder="+91 98XXXXXX21" required autocomplete="tel">
-            </div>
-            <div class="field-group">
-              <label for="ce-sharing">Room preference</label>
-              <select id="ce-sharing" name="sharing" required>
-                <option value="">Select an option</option>
-                <option value="double">Double sharing (₹10,500)</option>
-                <option value="triple">Triple sharing (₹9,500)</option>
-                <option value="unsure">Not sure yet — advise me</option>
-              </select>
-            </div>
-            <div class="field-group">
-              <label for="ce-notes">Notes (optional)</label>
-              <textarea id="ce-notes" name="notes" rows="3" placeholder="Dietary needs, travel from another city, questions…"></textarea>
-            </div>
-            <div class="field-group ce-checkbox-field">
-              <label class="ce-checkbox-label" for="ce-consent">
-                <input type="checkbox" id="ce-consent" name="consent" required>
-                <span class="ce-checkbox-text">I understand dates and travel are as described on this page.</span>
-              </label>
-            </div>
-            <button type="submit" class="button button-primary ce-submit-pulse">I’m in — save my spot</button>
-            <p class="ce-form-feedback" id="ce-form-feedback" role="status" aria-live="polite" hidden></p>
-          </form>
+          <p style="margin:0 0 1.25rem;line-height:1.55;">Use the enquiry form on our contact page — mention <strong>Manali May 29–31</strong> and your room preference if you know it. We usually respond within a day.</p>
+          <a class="button button-primary ce-submit-pulse" href="contact.html#contact-enquiry-form">Open contact form</a>
         </article>
       </div>
     </section>
@@ -551,26 +518,6 @@
       a.setAttribute('aria-current', 'page');
     }
   });
-  </script>
-  <script>
-  (function () {
-    var form = document.getElementById('ce-signup-form');
-    var feedback = document.getElementById('ce-form-feedback');
-    if (!form || !feedback) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) {
-        feedback.hidden = false;
-        feedback.textContent = 'Please fill in all required fields.';
-        feedback.style.color = 'var(--error, #c0392b)';
-        return;
-      }
-      feedback.hidden = false;
-      feedback.style.color = 'var(--success, #2d7a5f)';
-      feedback.textContent = 'Thank you! We have received your signup. We will contact you shortly with confirmation and next steps.';
-      form.reset();
-    });
-  })();
   </script>
 </body>
 </html>
