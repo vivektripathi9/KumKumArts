@@ -2516,6 +2516,25 @@ p {
   opacity: 0.88;
 }
 
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 4px;
+}
+
+.contact-form > button[type="submit"] {
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.field-group label .optional-mark {
+  font-weight: 500;
+  color: var(--brown);
+  opacity: 0.75;
+  font-size: 0.85em;
+}
+
 .field-group {
   display: grid;
   gap: 6px;
