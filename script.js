@@ -267,7 +267,7 @@ const KUMKUM_EVENT_PHOTO_POOL = [
   "Event/IMG_3891.JPG",
 ];
 
-// ── Home Manali section — rotating retreat photos ─────────────────────────────
+// ── Home current-retreat section — rotating retreat photos ─────────────────
 (function initManaliVisualRotate() {
   const root = document.querySelector("[data-manali-visual-rotate]");
   if (!root) return;
@@ -321,7 +321,7 @@ const KUMKUM_EVENT_PHOTO_POOL = [
   applySources();
   imgs[0].setAttribute(
     "alt",
-    "Rotating photos from Kumkum Arts retreats in Manali and the mountains"
+    "Rotating photos from Kumkum Arts retreats in the Himalayas"
   );
   imgs[1].setAttribute("alt", "");
   imgs[2].setAttribute("alt", "");
